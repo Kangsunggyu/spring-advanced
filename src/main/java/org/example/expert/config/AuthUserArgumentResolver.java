@@ -23,7 +23,6 @@ public class AuthUserArgumentResolver implements HandlerMethodArgumentResolver {
         if (hasAuthAnnotation != isAuthUserType) {
             throw new AuthException("@Auth와 AuthUser 타입은 함께 사용되어야 합니다.");
         }
-
         return hasAuthAnnotation;
     }
 
@@ -32,8 +31,7 @@ public class AuthUserArgumentResolver implements HandlerMethodArgumentResolver {
             @Nullable MethodParameter parameter,
             @Nullable ModelAndViewContainer mavContainer,
             NativeWebRequest webRequest,
-            @Nullable WebDataBinderFactory binderFactory
-    ) {
+            @Nullable WebDataBinderFactory binderFactory) {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
 
         // JwtFilter 에서 set 한 userId, email, userRole 값을 가져옴
