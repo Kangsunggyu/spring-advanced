@@ -38,7 +38,7 @@ class ManagerServiceTest {
     @InjectMocks
     private ManagerService managerService;
 
-    @Test
+    /*@Test
     public void manager_목록_조회_시_Todo가_없다면_NPE_에러를_던진다() {
         // given
         long todoId = 1L;
@@ -47,6 +47,23 @@ class ManagerServiceTest {
         // when & then
         InvalidRequestException exception = assertThrows(InvalidRequestException.class, () -> managerService.getManagers(todoId));
         assertEquals("Manager not found", exception.getMessage());
+    }*/
+    @Test
+    public void manager_목록_조회_시_Todo가_없다면_IRE_에러를_던진다() {
+        // given
+        long todoId = 1L;
+        given(todoRepository.findById(todoId)).willReturn(Optional.empty());
+        //findById(1L)이 호출되면 빈 Optional을 반환하도록 설정
+
+        // when
+        // InvalidRequestException exception = assertThrows(InvalidRequestException.class, () -> managerService.getManagers(todoId)); 일떄의 상황에서
+        // managerService.getManagers(todoId) 메서드를 실
+        // 이때 InvalidRequestException이 발생할 것으로 예상
+        // 아 뭐라는겨 겁나 어렵네 치아아파 머리 ㅏㅇ파느리ㅜㅇ나룬앛
+        // assertThrows에 해당 예외를 담는다.
+        InvalidRequestException exception = assertThrows(InvalidRequestException.class, () -> managerService.getManagers(todoId));
+        // then
+        assertEquals("Todo not found", exception.getMessage()); // 해당 부분의 문자열이 달랐다.
     }
 
     @Test
