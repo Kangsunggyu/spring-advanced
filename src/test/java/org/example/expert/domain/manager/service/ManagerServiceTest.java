@@ -66,7 +66,7 @@ class ManagerServiceTest {
         assertEquals("Todo not found", exception.getMessage()); // 해당 부분의 문자열이 달랐다.
     }
 
-    @Test
+    @Test // 해당 코드에서 테스트 코드가 정상적동하지 않는다. 이는 테스트에서 InvalidRequestException가 발생하도록 하지만, 실제로는 NullPointerException 이 발생하기 때문이다. 하여 ManagerService 코드를 변경해야 한다. 하여 null 인경우를 처리하도록 한다.
     void todo의_user가_null인_경우_예외가_발생한다() {
         // given
         AuthUser authUser = new AuthUser(1L, "a@a.com", UserRole.USER);
