@@ -16,8 +16,8 @@ public class AuthUserArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        boolean hasAuthAnnotation = parameter.getParameterAnnotation(Auth.class) != null;
-        boolean isAuthUserType = parameter.getParameterType().equals(AuthUser.class);
+        boolean hasAuthAnnotation = parameter.getParameterAnnotation(Auth.class) != null; // auth 어노테이션이 있으면 true
+        boolean isAuthUserType = parameter.getParameterType().equals(AuthUser.class); // 파라메터 타입이 authUser인지 즉 가져온 데이터 타입이 authUser 클래스와 일치하는지 일치하면 true
 
         // @Auth 어노테이션과 AuthUser 타입이 함께 사용되지 않은 경우 예외 발생
         if (hasAuthAnnotation != isAuthUserType) {
